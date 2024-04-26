@@ -1,0 +1,16 @@
+---
+name: Publish
+'on':
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - run: make clean deps package install
+      - run: make publish PASSWORD=${{ secrets.PYPI_TOKEN }}
