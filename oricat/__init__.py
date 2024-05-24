@@ -19,7 +19,7 @@ def categorise(input_dir: str, output_dir: str) -> None:
 
     images = _read_images(input_dir, logger)
 
-    landscape_images, portrait_images, square_images = _categorise_images(images, logger)
+    landscape_images, portrait_images, square_images = _categorise_images(input_dir, images, logger)
 
     _write_images(landscape_images, 'landscape', input_dir, output_dir, logger)
     _write_images(portrait_images, 'portrait', input_dir, output_dir, logger)
@@ -32,14 +32,15 @@ def _read_images(input_dir: str, logger) -> list:
 
     images = []
     for image in os.listdir(input_dir):
-        if image.endswith('.jpg') or image.endswith('.jpeg'):
+        if image.endswith('.jpg') or image.endswith('.jpeg') or image.endswith('.png') or image.endswith('.gif'):
+            logger.debug(f'Found {image}')
             images.append(image)
 
     logger.info(f'Found {len(images)} images in {input_dir}')
 
     return images
 
-def _categorise_images(images: list, logger) -> dict:
+def _categorise_images(input_dir: str, images: list, logger) -> dict:
     """Categorise images based on orientation: portrait, landscape, and square."""
 
     logger.info(f'Categorising {len(images)} images...')
@@ -49,7 +50,7 @@ def _categorise_images(images: list, logger) -> dict:
     square_images = []
 
     for image in images:
-        with Image.open(image) as img:
+        with Image.open(os.path.join(input_dir, image)) as img:
             width, height = img.size
             if width > height:
                 logger.debug(f'{image} is landscape')
@@ -70,17 +71,18 @@ def _categorise_images(images: list, logger) -> dict:
 def _write_images(images: list, orientation: str, input_dir: str, output_dir: str, logger) -> None:
     """Write images to the output directory based on the orientation as sub-directory."""
 
-    logger.info(f'Writing {len(images)} {orientation} images to {output_dir}/{orientation}...')
+    orientation_dir = os.path.join(output_dir, orientation)
+    logger.info(f'Writing {len(images)} {orientation} images to {orientation_dir}...')
 
-    if not os.path.exists(f'{output_dir}/{orientation}'):
-        os.makedirs(f'{output_dir}/{orientation}')
+    if not os.path.exists(orientation_dir):
+        os.makedirs(orientation_dir)
 
     for image in images:
-        logger.debug(f'Writing {image} to {output_dir}/{orientation}/')
-        os.rename(f'{input_dir}/{image}', f'{output_dir}/{orientation}/{image}')
+        logger.debug(f'Writing {image} to {orientation_dir}/')
+        os.rename(os.path.join(input_dir, image), os.path.join(orientation_dir, image))
 
     logger.info(f'Finished writing {len(images)} {orientation} images '\
-                'to {output_dir}/{orientation}')
+                'to {orientation_dir}')
 
 @click.command()
 @click.option('--input-dir', default='oricat', show_default=True, type=str,
