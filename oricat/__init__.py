@@ -30,9 +30,10 @@ def _read_images(input_dir: str, logger) -> list:
 
     logger.info(f'Reading images from {input_dir}...')
 
+    exts = ['.jpg', '.jpeg', '.png', '.gif']
     images = []
     for image in os.listdir(input_dir):
-        if image.endswith('.jpg') or image.endswith('.jpeg') or image.endswith('.png') or image.endswith('.gif'):
+        if image.endswith(tuple(exts)):
             logger.debug(f'Found {image}')
             images.append(image)
 
