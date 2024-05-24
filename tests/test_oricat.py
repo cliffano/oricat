@@ -3,6 +3,7 @@ from unittest.mock import patch #, call
 import unittest.mock
 import unittest
 # from oricat import categorise
+from click.testing import CliRunner
 from oricat import cli
 
 class TestOricat(unittest.TestCase):
@@ -66,7 +67,16 @@ class TestOricat(unittest.TestCase):
 
         func_categorise.return_value = None
 
-        cli('someinputdir', 'someoutputdir')
+        runner = CliRunner()
+        result = runner.invoke(cli, [
+            '--input-dir',
+            'some/input/dir/',
+            '--output-dir',
+            'some/output/dir/'
+        ])
+        assert not result.exception
+        assert result.exit_code == 0
+        assert result.output == ''
 
-        # should delegate call to apply
-        func_categorise.assert_called_once_with('someinputdir', 'someoutputdir')
+        # should delegate call to categorise
+        func_categorise.assert_called_once_with('some/input/dir/', 'some/output/dir/')
