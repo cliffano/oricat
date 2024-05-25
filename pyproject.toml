@@ -7,7 +7,7 @@ no-binary = [ ":none:" ]
 
 [tool.poetry]
 name = "oricat"
-version = "0.9.0-pre.0"
+version = "0.10.0"
 description = "Categorise images by orientation"
 license = "MIT"
 authors = [ "Cliffano Subagio <cliffano@gmail.com>" ]
@@ -22,19 +22,19 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 
-[[tool.poetry.packages]]
-include = "oricat"
+  [[tool.poetry.packages]]
+  include = "oricat"
 
-[tool.poetry.scripts]
-oricat = "oricat:cli"
+  [tool.poetry.scripts]
+  oricat = "oricat:cli"
 
-[tool.poetry.dependencies]
-python = "^3.8"
-click = "^8.1.3"
-conflog = "^1.5.1"
-pillow = "^10.3.0"
-PyYAML = "^6.0.1"
-pyyaml-include = "^1.3.1"
+  [tool.poetry.dependencies]
+  python = "^3.8"
+  click = "^8.1.3"
+  conflog = "^1.5.1"
+  pillow = "^10.3.0"
+  PyYAML = "^6.0.1"
+  pyyaml-include = "^1.3.1"
 
 [tool.poetry.group.dev.dependencies]
 twine = "4.0.2"
