@@ -7,7 +7,7 @@ no-binary = [ ":none:" ]
 
 [tool.poetry]
 name = "oricat"
-version = "0.10.0"
+version = "0.10.1-pre.0"
 description = "Categorise images by orientation"
 license = "MIT"
 authors = [ "Cliffano Subagio <cliffano@gmail.com>" ]
