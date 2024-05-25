@@ -83,7 +83,7 @@ def _write_images(images: list, orientation: str, input_dir: str, output_dir: st
         os.rename(os.path.join(input_dir, image), os.path.join(orientation_dir, image))
 
     logger.info(f'Finished writing {len(images)} {orientation} images '\
-                'to {orientation_dir}')
+                f'to {orientation_dir}')
 
 @click.command()
 @click.option('--input-dir', default='oricat', show_default=True, type=str,
