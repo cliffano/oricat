@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add workflow_dispatch trigger to ci-workflow
 
+### Changed
+- Change min Python to 3.10
+- Upgrade deps to latest
+
 ### Fixed
 - Fix {orientation_dir} variable showing up on finished writing log message
 
