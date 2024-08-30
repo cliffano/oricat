@@ -24,17 +24,17 @@ class TestCategorise(unittest.TestCase):
         portrait_files = os.listdir(os.path.join(output_dir, 'portrait'))
         square_files = os.listdir(os.path.join(output_dir, 'square'))
 
-        landscape_files = landscape_files.sort()
+        landscape_files.sort()
         self.assertEqual(len(landscape_files), 2)
         self.assertEqual(landscape_files[0], 'cat_landscape_1.png')
         self.assertEqual(landscape_files[1], 'cat_landscape_2.png')
 
-        portrait_files = portrait_files.sort()
+        portrait_files.sort()
         self.assertEqual(len(portrait_files), 2)
         self.assertEqual(portrait_files[0], 'cat_portrait_1.png')
         self.assertEqual(portrait_files[1], 'cat_portrait_2.png')
 
-        square_files = square_files.sort()
+        square_files.sort()
         self.assertEqual(len(square_files), 2)
         self.assertEqual(square_files[0], 'cat_square_1.png')
         self.assertEqual(square_files[1], 'cat_square_2.png')
