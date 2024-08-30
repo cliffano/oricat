@@ -7,7 +7,7 @@ no-binary = [ ":none:" ]
 
 [tool.poetry]
 name = "oricat"
-version = "0.10.1-pre.0"
+version = "1.0.0"
 description = "Categorise images by orientation"
 license = "MIT"
 authors = [ "Cliffano Subagio <cliffano@gmail.com>" ]
@@ -22,18 +22,18 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 
-[[tool.poetry.packages]]
-include = "oricat"
+  [[tool.poetry.packages]]
+  include = "oricat"
 
-[tool.poetry.scripts]
-oricat = "oricat:cli"
+  [tool.poetry.scripts]
+  oricat = "oricat:cli"
 
-[tool.poetry.dependencies]
-python = "^3.10"
-click = "8.1.7"
-conflog = "^1.5.1"
-pillow = "^10.3.0"
-PyYAML = "^6.0.1"
+  [tool.poetry.dependencies]
+  python = "^3.10"
+  click = "8.1.7"
+  conflog = "^1.5.1"
+  pillow = "^10.3.0"
+  PyYAML = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
 twine = "5.1.1"
@@ -41,7 +41,7 @@ wheel = "0.44.0"
 
 [tool.poetry.group.test.dependencies]
 coverage = "7.2.3"
-numpy = "1.26.4" # https://stackoverflow.com/questions/78634235/numpy-dtype-size-changed-may-indicate-binary-incompatibility-expected-96-from
+numpy = "1.26.4"
 pylint = "3.2.6"
 pytest = "8.3.2"
 wily = "1.25.0"
