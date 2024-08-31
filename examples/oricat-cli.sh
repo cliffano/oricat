@@ -1,4 +1,6 @@
 #!/bin/sh
+set -o errexit
+set -o nounset
 
 echo "\n\n========================================"
 echo "Show help guide: oricat --help"
