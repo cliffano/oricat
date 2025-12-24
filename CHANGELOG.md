@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add --version flag to show version info
 
+### Changed
+- Upgrade PieMaker to 2.0.0
+
 ## 1.0.0 - 2024-08-30
 ### Added
 - Add workflow_dispatch trigger to ci-workflow

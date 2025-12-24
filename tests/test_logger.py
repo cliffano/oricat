@@ -3,6 +3,7 @@ import logging
 import unittest
 from oricat.logger import init
 
+
 class TesLogger(unittest.TestCase):
 
     def test_init(self):
