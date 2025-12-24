@@ -22,18 +22,18 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 
-  [[tool.poetry.packages]]
-  include = "oricat"
+[[tool.poetry.packages]]
+include = "oricat"
 
-  [tool.poetry.scripts]
-  oricat = "oricat:cli"
+[tool.poetry.scripts]
+oricat = "oricat:cli"
 
-  [tool.poetry.dependencies]
-  python = "^3.10"
-  click = "8.1.7"
-  conflog = "^1.5.1"
-  pillow = "^10.3.0"
-  PyYAML = "^6.0.1"
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "8.1.7"
+conflog = "^1.5.1"
+pillow = "^10.3.0"
+PyYAML = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
 twine = "5.1.1"
