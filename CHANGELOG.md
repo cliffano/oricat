@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add --version flag to show version info
+
 ## 1.0.0 - 2024-08-30
 ### Added
 - Add workflow_dispatch trigger to ci-workflow

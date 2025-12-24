@@ -10,7 +10,7 @@ import click
 from PIL import Image
 from .logger import init
 
-def categorise(input_dir: str, output_dir: str) -> None:
+def _categorise(input_dir: str, output_dir: str) -> None:
     """Categorise image files based on orientation:
     portrait, landscape, and square, one directory for each.
     """
@@ -91,7 +91,14 @@ def _write_images(images: list, orientation: str, input_dir: str, output_dir: st
 @click.option('--output-dir', default='oricat-out', show_default=True, type=str,
               help='Output directory where the categorised files will be written to, '\
                    'under landscape/portrait/square sub-directories')
-def cli(input_dir: str, output_dir: str) -> None:
+def categorise(input_dir: str, output_dir: str) -> None:
     """Python CLI for tagging AWS resources based on a YAML configuration.
     """
-    categorise(input_dir, output_dir)
+    _categorise(input_dir, output_dir)
+
+@click.group()
+@click.version_option(package_name="oricat", prog_name="oricat")
+def cli():
+    """Oricat CLI"""
+
+cli.add_command(categorise)
