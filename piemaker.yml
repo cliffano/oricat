@@ -1,3 +1,13 @@
 ---
 author: Cliffano Subagio
 package_name: oricat
+generator:
+  component: python-cli
+  inputs:
+    project_id: oricat
+    project_name: Oricat
+    project_desc: Python CLI for categorising image files by orientation
+    author_name: Cliffano Subagio
+    author_email: cliffano@gmail.com
+    github_id: cliffano
+    github_repo: oricat
