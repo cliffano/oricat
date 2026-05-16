@@ -1,24 +1,20 @@
-<img align="right" src="https://raw.github.com/cliffano/oricat/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/cliffano/oricat/workflows/CI/badge.svg)](https://github.com/cliffano/oricat/actions?query=workflow%3ACI)
 [![Security Status](https://snyk.io/test/github/cliffano/oricat/badge.svg)](https://snyk.io/test/github/cliffano/oricat)
 [![Published Version](https://img.shields.io/pypi/v/oricat.svg)](https://pypi.python.org/pypi/oricat)
-<br/>
 
-Oricat
-------
+# Oricat
 
 Oricat is a Python CLI for categorising image files by orientation.
 
 Given a folder of images, Oricat will organise those files by orientation into subfolders `landscape`, `portrait`, and `square`.
 
-Installation
-------------
+## Installation
 
     pip3 install oricat
 
-Usage
------
+## Usage
 
 Categorise images in a folder:
 
@@ -30,8 +26,7 @@ The categorised images will then be moved to:
 * `some/output/folder/portrait` for images having portrait orientation
 * `some/output/folder/square` for images having square orientation
 
-Colophon
---------
+## Colophon
 
 [Developer's Guide](https://cliffano.github.io/developers_guide.html#python)
 
