@@ -64,6 +64,7 @@ deps-extra-apt:
 	apt-get update
 	apt-get install -y python3-venv
 	apt-get install -y python3-sphinx # needed by sphinx-apidoc
+	make -f Makefile-extras deps-extra-apt
 
 rmdeps:
 	rm -f poetry.lock requirements.txt

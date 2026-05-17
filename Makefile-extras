@@ -1,0 +1,5 @@
+deps-extra-apt:
+    # pillow being built from source starting from Python 3.14 
+    apt-get install -y libjpeg-dev zlib1g-dev
+
+.PHONY: deps-extra-apt
