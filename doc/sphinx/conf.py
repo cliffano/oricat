@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'oricat'
-copyright = '2024, Cliffano Subagio'
+copyright = '2026, Cliffano Subagio'
 author = 'Cliffano Subagio'
 
 # -- General configuration ---------------------------------------------------
