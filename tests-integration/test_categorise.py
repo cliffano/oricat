@@ -3,13 +3,14 @@ import os
 from pathlib import Path
 import shutil
 import unittest
+from click.testing import CliRunner
 from oricat import categorise
 
 
 class TestCategorise(unittest.TestCase):
 
     def test_categorise(self):
-        data_dir = "examples/fixtures/"
+        data_dir = "examples/fixtures/categorise/"
         input_dir = "stage/test-integration/input/"
         output_dir = "stage/test-integration/output/"
 
@@ -17,11 +18,16 @@ class TestCategorise(unittest.TestCase):
         Path(output_dir).mkdir(parents=True, exist_ok=True)
 
         for data_file in os.listdir(data_dir):
-            shutil.copy(
-                os.path.join(data_dir, data_file), os.path.join(input_dir, data_file)
-            )
+            src = os.path.join(data_dir, data_file)
+            if os.path.isfile(src):
+                shutil.copy(src, os.path.join(input_dir, data_file))
 
-        categorise(input_dir, output_dir)
+        runner = CliRunner()
+        result = runner.invoke(
+            categorise, ["--input-dir", input_dir, "--output-dir", output_dir]
+        )
+        assert not result.exception
+        self.assertEqual(result.exit_code, 0)
 
         landscape_files = os.listdir(os.path.join(output_dir, "landscape"))
         portrait_files = os.listdir(os.path.join(output_dir, "portrait"))
