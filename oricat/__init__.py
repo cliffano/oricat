@@ -116,10 +116,28 @@ def categorise(input_dir: str, output_dir: str) -> None:
     _categorise(input_dir, output_dir)
 
 
-@click.group()
+@click.group(invoke_without_command=True)
 @click.version_option(package_name="oricat", prog_name="oricat")
-def cli():
+@click.option(
+    "--input-dir",
+    default="oricat",
+    show_default=True,
+    type=str,
+    help="Input directory where the files to be categorised are located",
+)
+@click.option(
+    "--output-dir",
+    default="oricat-out",
+    show_default=True,
+    type=str,
+    help="Output directory where the categorised files will be written to, "
+    "under landscape/portrait/square sub-directories",
+)
+@click.pass_context
+def cli(ctx, input_dir: str, output_dir: str):
     """Oricat CLI"""
+    if ctx.invoked_subcommand is None:
+        ctx.invoke(categorise, input_dir, output_dir)
 
 
 cli.add_command(categorise)
