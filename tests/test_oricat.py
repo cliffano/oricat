@@ -82,5 +82,5 @@ class TestOricat(unittest.TestCase):
         assert result.exit_code == 0
         assert result.output == ""
 
-        # should delegate call to categorise
+        # should delegate call to _categorise
         func_categorise.assert_called_once_with("some/input/dir/", "some/output/dir/")

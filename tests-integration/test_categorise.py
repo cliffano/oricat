@@ -4,7 +4,7 @@ from pathlib import Path
 import shutil
 import unittest
 from click.testing import CliRunner
-from oricat import categorise
+from oricat import cli
 
 
 class TestCategorise(unittest.TestCase):
@@ -24,9 +24,8 @@ class TestCategorise(unittest.TestCase):
 
         runner = CliRunner()
         result = runner.invoke(
-            categorise, ["--input-dir", input_dir, "--output-dir", output_dir]
+            cli, ["categorise", "--input-dir", input_dir, "--output-dir", output_dir]
         )
-        assert not result.exception
         self.assertEqual(result.exit_code, 0)
 
         landscape_files = os.listdir(os.path.join(output_dir, "landscape"))
