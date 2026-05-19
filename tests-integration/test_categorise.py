@@ -18,15 +18,16 @@ class TestCategorise(unittest.TestCase):
         Path(output_dir).mkdir(parents=True, exist_ok=True)
 
         for data_file in os.listdir(data_dir):
-            shutil.copy(
-                os.path.join(data_dir, data_file), os.path.join(input_dir, data_file)
-            )
+            src = os.path.join(data_dir, data_file)
+            if os.path.isfile(src):
+                shutil.copy(src, os.path.join(input_dir, data_file))
 
         runner = CliRunner()
         result = runner.invoke(
             cli, ["categorise", "--input-dir", input_dir, "--output-dir", output_dir]
         )
-        assert result.exit_code == 0
+        assert not result.exception
+        self.assertEqual(result.exit_code, 0)
 
         landscape_files = os.listdir(os.path.join(output_dir, "landscape"))
         portrait_files = os.listdir(os.path.join(output_dir, "portrait"))
