@@ -10,7 +10,7 @@ from oricat import cli
 class TestCategorise(unittest.TestCase):
 
     def test_categorise(self):
-        data_dir = "examples/fixtures/"
+        data_dir = "examples/fixtures/categorise/"
         input_dir = "stage/test-integration/input/"
         output_dir = "stage/test-integration/output/"
 
