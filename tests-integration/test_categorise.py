@@ -3,7 +3,8 @@ import os
 from pathlib import Path
 import shutil
 import unittest
-from oricat import categorise
+from click.testing import CliRunner
+from oricat import cli
 
 
 class TestCategorise(unittest.TestCase):
@@ -21,7 +22,11 @@ class TestCategorise(unittest.TestCase):
                 os.path.join(data_dir, data_file), os.path.join(input_dir, data_file)
             )
 
-        categorise(input_dir, output_dir)
+        runner = CliRunner()
+        result = runner.invoke(
+            cli, ["categorise", "--input-dir", input_dir, "--output-dir", output_dir]
+        )
+        assert result.exit_code == 0
 
         landscape_files = os.listdir(os.path.join(output_dir, "landscape"))
         portrait_files = os.listdir(os.path.join(output_dir, "portrait"))

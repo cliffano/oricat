@@ -112,7 +112,7 @@ def _write_images(
     "under landscape/portrait/square sub-directories",
 )
 def categorise(input_dir: str, output_dir: str) -> None:
-    """Python CLI for tagging AWS resources based on a YAML configuration."""
+    """Categorise image files by orientation."""
     _categorise(input_dir, output_dir)
 
 

@@ -62,18 +62,25 @@ class TestOricat(unittest.TestCase):
     #     )
     #     func_sleep.assert_called_once_with(3)
 
-    @patch("oricat.categorise")
+    @patch("oricat._categorise")
     def test_cli(self, func_categorise):  # pylint: disable=too-many-arguments
 
         func_categorise.return_value = None
 
         runner = CliRunner()
         result = runner.invoke(
-            cli, ["--input-dir", "some/input/dir/", "--output-dir", "some/output/dir/"]
+            cli,
+            [
+                "categorise",
+                "--input-dir",
+                "some/input/dir/",
+                "--output-dir",
+                "some/output/dir/",
+            ],
         )
         assert not result.exception
         assert result.exit_code == 0
         assert result.output == ""
 
-        # should delegate call to categorise
+        # should delegate call to _categorise
         func_categorise.assert_called_once_with("some/input/dir/", "some/output/dir/")
