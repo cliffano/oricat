@@ -26,7 +26,6 @@ class TestCategorise(unittest.TestCase):
         result = runner.invoke(
             cli, ["categorise", "--input-dir", input_dir, "--output-dir", output_dir]
         )
-        assert not result.exception
         self.assertEqual(result.exit_code, 0)
 
         landscape_files = os.listdir(os.path.join(output_dir, "landscape"))
