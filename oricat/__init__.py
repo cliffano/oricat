@@ -119,6 +119,7 @@ def categorise(input_dir: str, output_dir: str) -> None:
 
 def _blur_plates(input_dir: str, output_dir: str) -> None:
     """Detect and blur license plates in image files."""
+    # pylint: disable=no-member
 
     logger = init()
     plate_cascade_path = cv2.data.haarcascades + "haarcascade_russian_plate_number.xml"
