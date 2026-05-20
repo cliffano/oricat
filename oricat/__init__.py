@@ -10,7 +10,7 @@ from .blur_plates import _blur_plates
 from .categorise_orientation import _categorise_orientation
 
 
-@click.command()
+@click.command(name="categorise-orientation")
 @click.option(
     "--input-dir",
     default="oricat",
@@ -26,12 +26,12 @@ from .categorise_orientation import _categorise_orientation
     help="Output directory where the categorised files will be written to, "
     "under landscape/portrait/square sub-directories",
 )
-def categorise_orientation(input_dir: str, output_dir: str) -> None:
+def categorise_orientation_command(input_dir: str, output_dir: str) -> None:
     """Categorise image files by orientation."""
     _categorise_orientation(input_dir, output_dir)
 
 
-@click.command()
+@click.command(name="blur-plates")
 @click.option(
     "--input-dir",
     default="oricat",
@@ -46,7 +46,7 @@ def categorise_orientation(input_dir: str, output_dir: str) -> None:
     type=str,
     help="Output directory where blurred images will be written",
 )
-def blur_plates(input_dir: str, output_dir: str) -> None:
+def blur_plates_command(input_dir: str, output_dir: str) -> None:
     """Detect and blur license plates in image files."""
     _blur_plates(input_dir, output_dir)
 
@@ -72,8 +72,12 @@ def blur_plates(input_dir: str, output_dir: str) -> None:
 def cli(ctx, input_dir: str, output_dir: str):
     """Oricat CLI"""
     if ctx.invoked_subcommand is None:
-        ctx.invoke(categorise_orientation, input_dir=input_dir, output_dir=output_dir)
+        ctx.invoke(
+            categorise_orientation_command,
+            input_dir=input_dir,
+            output_dir=output_dir,
+        )
 
 
-cli.add_command(categorise_orientation)
-cli.add_command(blur_plates)
+cli.add_command(categorise_orientation_command)
+cli.add_command(blur_plates_command)
