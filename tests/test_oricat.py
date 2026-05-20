@@ -62,16 +62,16 @@ class TestOricat(unittest.TestCase):
     #     )
     #     func_sleep.assert_called_once_with(3)
 
-    @patch("oricat._categorise")
-    def test_cli(self, func_categorise):  # pylint: disable=too-many-arguments
+    @patch("oricat._categorise_orientation")
+    def test_cli(self, func_categorise_orientation):  # pylint: disable=too-many-arguments
 
-        func_categorise.return_value = None
+        func_categorise_orientation.return_value = None
 
         runner = CliRunner()
         result = runner.invoke(
             cli,
             [
-                "categorise",
+                "categorise-orientation",
                 "--input-dir",
                 "some/input/dir/",
                 "--output-dir",
@@ -82,8 +82,8 @@ class TestOricat(unittest.TestCase):
         assert result.exit_code == 0
         assert result.output == ""
 
-        # should delegate call to _categorise
-        func_categorise.assert_called_once_with("some/input/dir/", "some/output/dir/")
+        # should delegate call to _categorise_orientation
+        func_categorise_orientation.assert_called_once_with("some/input/dir/", "some/output/dir/")
 
     @patch("oricat._blur_plates")
     def test_blur_plates_cli(self, func_blur_plates):

@@ -7,7 +7,7 @@ Tag any AWS resource via config file.
 import click
 
 from .blur_plates import _blur_plates
-from .categorise import _categorise
+from .categorise_orientation import _categorise_orientation
 
 
 @click.command()
@@ -26,9 +26,9 @@ from .categorise import _categorise
     help="Output directory where the categorised files will be written to, "
     "under landscape/portrait/square sub-directories",
 )
-def categorise(input_dir: str, output_dir: str) -> None:
+def categorise_orientation(input_dir: str, output_dir: str) -> None:
     """Categorise image files by orientation."""
-    _categorise(input_dir, output_dir)
+    _categorise_orientation(input_dir, output_dir)
 
 
 @click.command()
@@ -72,8 +72,8 @@ def blur_plates(input_dir: str, output_dir: str) -> None:
 def cli(ctx, input_dir: str, output_dir: str):
     """Oricat CLI"""
     if ctx.invoked_subcommand is None:
-        ctx.invoke(categorise, input_dir=input_dir, output_dir=output_dir)
+        ctx.invoke(categorise_orientation, input_dir=input_dir, output_dir=output_dir)
 
 
-cli.add_command(categorise)
+cli.add_command(categorise_orientation)
 cli.add_command(blur_plates)

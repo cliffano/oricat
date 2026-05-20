@@ -1,4 +1,4 @@
-"""Categorise module for oricat."""
+"""Categorise orientation module for oricat."""
 
 import os
 
@@ -7,7 +7,7 @@ from PIL import Image
 from .logger import init
 
 
-def _read_images(input_dir: str, logger) -> list:
+def _read_orientation_images(input_dir: str, logger) -> list:
     """Read images from the input directory."""
 
     logger.info("Reading images from %s...", input_dir)
@@ -24,7 +24,7 @@ def _read_images(input_dir: str, logger) -> list:
     return images
 
 
-def _categorise_images(input_dir: str, images: list, logger) -> tuple:
+def _categorise_orientation_images(input_dir: str, images: list, logger) -> tuple:
     """Categorise images based on orientation: portrait, landscape, and square."""
 
     logger.info("Categorising %s images...", len(images))
@@ -53,7 +53,7 @@ def _categorise_images(input_dir: str, images: list, logger) -> tuple:
     return (landscape_images, portrait_images, square_images)
 
 
-def _write_images(
+def _write_orientation_images(
     images: list, orientation: str, input_dir: str, output_dir: str, logger
 ) -> None:
     """Write images to the output directory based on the orientation as sub-directory."""
@@ -75,19 +75,19 @@ def _write_images(
     )
 
 
-def _categorise(input_dir: str, output_dir: str) -> None:
+def _categorise_orientation(input_dir: str, output_dir: str) -> None:
     """Categorise image files based on orientation:
     portrait, landscape, and square, one directory for each.
     """
 
     logger = init()
 
-    images = _read_images(input_dir, logger)
+    images = _read_orientation_images(input_dir, logger)
 
-    landscape_images, portrait_images, square_images = _categorise_images(
+    landscape_images, portrait_images, square_images = _categorise_orientation_images(
         input_dir, images, logger
     )
 
-    _write_images(landscape_images, "landscape", input_dir, output_dir, logger)
-    _write_images(portrait_images, "portrait", input_dir, output_dir, logger)
-    _write_images(square_images, "square", input_dir, output_dir, logger)
+    _write_orientation_images(landscape_images, "landscape", input_dir, output_dir, logger)
+    _write_orientation_images(portrait_images, "portrait", input_dir, output_dir, logger)
+    _write_orientation_images(square_images, "square", input_dir, output_dir, logger)
