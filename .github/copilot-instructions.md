@@ -222,7 +222,7 @@ Use clear, imperative commit messages:
 - `Fix test patch paths by avoiding command/module name collisions`
 - `Add unit tests for blur-plates module`
 - `Update README and example script to use categorise-orientation`
-- `Refactor: move categorise and blur-plates logic into separate modules`
+- `Remove deprecated blur-plates module and related code`
 
 ## GitHub Workflows
 
