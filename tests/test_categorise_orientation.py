@@ -53,8 +53,8 @@ class TestCategoriseOrientation(unittest.TestCase):
 
         func_open.side_effect = [landscape_cm, portrait_cm, square_cm]
 
-        landscape_images, portrait_images, square_images = _categorise_orientation_images(
-            "some/input", images, logger
+        landscape_images, portrait_images, square_images = (
+            _categorise_orientation_images("some/input", images, logger)
         )
 
         self.assertEqual(landscape_images, ["landscape.jpg"])
