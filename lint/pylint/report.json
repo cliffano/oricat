@@ -35,7 +35,7 @@
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 56,
+        "statement": 85,
         "warning": 0
       },
       "oricat.logger": {
@@ -53,7 +53,7 @@
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 14,
+        "statement": 22,
         "warning": 0
       },
       "tests.__init__": {
@@ -74,6 +74,15 @@
         "statement": 7,
         "warning": 0
       },
+      "test_blur_plates": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 23,
+        "warning": 0
+      },
       "test_categorise": {
         "convention": 0,
         "error": 0,
@@ -82,9 +91,18 @@
         "refactor": 0,
         "statement": 35,
         "warning": 0
+      },
+      "conftest": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 5,
+        "warning": 0
       }
     },
-    "statement": 116,
+    "statement": 181,
     "error": 0,
     "warning": 0,
     "refactor": 0,
