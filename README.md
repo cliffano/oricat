@@ -20,7 +20,7 @@ Given a folder of images, Oricat will organise those files by orientation into s
 
 Command:
 
-    oricat categorise --input-dir some/input/folder/ --output-dir some/output/folder/
+    oricat categorise-orientation --input-dir some/input/folder/ --output-dir some/output/folder/
 
 The categorised images will then be moved to:
 
