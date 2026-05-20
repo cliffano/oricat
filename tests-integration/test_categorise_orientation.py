@@ -8,9 +8,9 @@ from click.testing import CliRunner
 from oricat import cli
 
 
-class TestCategorise(unittest.TestCase):
+class TestCategoriseOrientation(unittest.TestCase):
 
-    def test_categorise(self):
+    def test_categorise_orientation(self):
         data_dir = "examples/fixtures/categorise/"
         input_dir = "stage/test-integration/input/"
         output_dir = "stage/test-integration/output/"
@@ -25,7 +25,8 @@ class TestCategorise(unittest.TestCase):
 
         runner = CliRunner()
         result = runner.invoke(
-            cli, ["categorise", "--input-dir", input_dir, "--output-dir", output_dir]
+            cli,
+            ["categorise-orientation", "--input-dir", input_dir, "--output-dir", output_dir],
         )
         self.assertEqual(result.exit_code, 0)
 
