@@ -7,6 +7,7 @@ Tag any AWS resource via config file.
 
 import os
 import click
+import cv2
 from PIL import Image
 from .logger import init
 
@@ -116,6 +117,66 @@ def categorise(input_dir: str, output_dir: str) -> None:
     _categorise(input_dir, output_dir)
 
 
+def _blur_plates(input_dir: str, output_dir: str) -> None:
+    """Detect and blur license plates in image files."""
+
+    logger = init()
+    plate_cascade_path = cv2.data.haarcascades + "haarcascade_russian_plate_number.xml"
+    plate_cascade = cv2.CascadeClassifier(plate_cascade_path)
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    exts = [".jpg", ".jpeg", ".png"]
+    images = [
+        f
+        for f in os.listdir(input_dir)
+        if os.path.isfile(os.path.join(input_dir, f))
+        and f.lower().endswith(tuple(exts))
+    ]
+
+    logger.info("Processing %s images from %s...", len(images), input_dir)
+
+    for filename in images:
+        input_path = os.path.join(input_dir, filename)
+        output_path = os.path.join(output_dir, filename)
+        logger.debug("Processing %s", filename)
+        img = cv2.imread(input_path)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        plates = plate_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+        if len(plates) > 0:
+            logger.info("Found %s plate(s) in %s, blurring...", len(plates), filename)
+            for x, y, w, h in plates:
+                roi = img[y : y + h, x : x + w]
+                img[y : y + h, x : x + w] = cv2.GaussianBlur(roi, (51, 51), 0)
+        else:
+            logger.warning("No plates detected in %s", filename)
+        cv2.imwrite(output_path, img)
+        logger.debug("Wrote %s", output_path)
+
+    logger.info("Finished processing %s images to %s", len(images), output_dir)
+
+
+@click.command()
+@click.option(
+    "--input-dir",
+    default="oricat",
+    show_default=True,
+    type=str,
+    help="Input directory containing car images with license plates",
+)
+@click.option(
+    "--output-dir",
+    default="oricat-out",
+    show_default=True,
+    type=str,
+    help="Output directory where blurred images will be written",
+)
+def blur_plates(input_dir: str, output_dir: str) -> None:
+    """Detect and blur license plates in image files."""
+    _blur_plates(input_dir, output_dir)
+
+
 @click.group(invoke_without_command=True)
 @click.version_option(package_name="oricat", prog_name="oricat")
 @click.option(
@@ -141,3 +202,4 @@ def cli(ctx, input_dir: str, output_dir: str):
 
 
 cli.add_command(categorise)
+cli.add_command(blur_plates)
