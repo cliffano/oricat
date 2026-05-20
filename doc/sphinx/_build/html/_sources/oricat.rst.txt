@@ -12,10 +12,10 @@ oricat.blur\_plates module
    :undoc-members:
    :show-inheritance:
 
-oricat.categorise module
-------------------------
+oricat.categorise\_orientation module
+-------------------------------------
 
-.. automodule:: oricat.categorise
+.. automodule:: oricat.categorise_orientation
    :members:
    :undoc-members:
    :show-inheritance:
