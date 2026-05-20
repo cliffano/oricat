@@ -1,15 +1,10 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals
 import os
 import shutil
-import sys
-from pathlib import Path
 import unittest
+from pathlib import Path
+
 from click.testing import CliRunner
-
-ROOT_DIR = Path(__file__).resolve().parents[1]
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
-
 from oricat import cli
 
 
