@@ -1,66 +1,12 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals
-from unittest.mock import patch  # , call
-import unittest.mock
+from unittest.mock import patch
 import unittest
 
-# from oricat import categorise
 from click.testing import CliRunner
 from oricat import cli
 
 
 class TestOricat(unittest.TestCase):
-
-    # @patch('time.sleep')
-    # @patch('boto3.client')
-    # @patch('oricat.load')
-    # @patch('oricat.init')
-    # def test_apply( # pylint: disable=too-many-arguments
-    #         self,
-    #         func_init,
-    #         func_load,
-    #         func_client,
-    #         func_sleep):
-
-    #     mock_logger = unittest.mock.Mock()
-    #     mock_client = unittest.mock.Mock()
-    #     mock_tagset = unittest.mock.Mock()
-    #     mock_resource = unittest.mock.Mock()
-    #     mock_tagset_tag = unittest.mock.Mock()
-    #     mock_resource_tag = unittest.mock.Mock()
-
-    #     func_init.return_value = mock_logger
-    #     func_client.return_value = mock_client
-    #     func_load.return_value = (
-    #         { 'sometagsetname': mock_tagset },
-    #         [mock_resource]
-    #     )
-
-    #     mock_resource.get_arn.return_value = 'somearn'
-    #     mock_resource_tag.get_key.return_value = 'someresourcekey'
-    #     mock_resource_tag.get_value.return_value = 'someresourcevalue'
-    #     mock_tagset_tag.get_key.return_value = 'sometagkey'
-    #     mock_tagset_tag.get_value.return_value = 'sometagvalue'
-    #     mock_resource.get_tagset_names.return_value = ['sometagsetname']
-    #     mock_tagset.get_tags.return_value = [mock_tagset_tag]
-    #     mock_resource.get_tags.return_value = [mock_resource_tag]
-    #     mock_client.tag_resources.return_value = {}
-
-    #     apply(conf_file='oricat.yaml', dry_run=False, batch_size=5, delay=3)
-
-    #     self.assertEqual(mock_logger.info.call_count, 3)
-    #     mock_logger.info.assert_has_calls([
-    #         call('Loading configuration file oricat.yaml'),
-    #         call('Adding resource somearn to a batch with tags ' \
-    #             "{'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}"),
-    #         call("Applying 1 resource(s) with tags "\
-    #              "{'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}")
-    #     ])
-    #     # should call tag_resources once as part of remaining batches
-    #     mock_client.tag_resources.assert_called_once_with(
-    #         ResourceARNList=['somearn'],
-    #         Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}
-    #     )
-    #     func_sleep.assert_called_once_with(3)
 
     @patch("oricat._categorise_orientation")
     def test_cli(self, func_categorise_orientation):  # pylint: disable=too-many-arguments
@@ -83,7 +29,25 @@ class TestOricat(unittest.TestCase):
         assert result.output == ""
 
         # should delegate call to _categorise_orientation
-        func_categorise_orientation.assert_called_once_with("some/input/dir/", "some/output/dir/")
+        func_categorise_orientation.assert_called_once_with(
+            "some/input/dir/", "some/output/dir/"
+        )
+
+    @patch("oricat._categorise_orientation")
+    def test_cli_default_invokes_categorise_orientation(
+        self, func_categorise_orientation
+    ):  # pylint: disable=too-many-arguments
+
+        func_categorise_orientation.return_value = None
+
+        runner = CliRunner()
+        result = runner.invoke(cli, [])
+        assert not result.exception
+        assert result.exit_code == 0
+        assert result.output == ""
+
+        # should delegate to default subcommand with default options
+        func_categorise_orientation.assert_called_once_with("oricat", "oricat-out")
 
     @patch("oricat._blur_plates")
     def test_blur_plates_cli(self, func_blur_plates):
