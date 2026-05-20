@@ -7,8 +7,8 @@ oricat/blur_plates.py
     F 10:0 _apply_blur - A (3)
 oricat/__init__.py
     F 72:0 cli - A (2)
-    F 29:0 categorise_orientation - A (1)
-    F 49:0 blur_plates - A (1)
+    F 29:0 categorise_orientation_command - A (1)
+    F 49:0 blur_plates_command - A (1)
 oricat/logger.py
     F 6:0 init - A (1)
 oricat/categorise_orientation.py
