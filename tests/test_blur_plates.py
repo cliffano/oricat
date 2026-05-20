@@ -17,7 +17,9 @@ class TestBlurPlates(unittest.TestCase):
         result = _apply_blur(img, plates, logger, "car.jpg")
 
         self.assertEqual(result, img)
-        logger.info.assert_called_once_with("Found %s plate(s) in %s, blurring...", 1, "car.jpg")
+        logger.info.assert_called_once_with(
+            "Found %s plate(s) in %s, blurring...", 1, "car.jpg"
+        )
         func_gaussian_blur.assert_called_once()
         self.assertEqual(img.__setitem__.call_count, 1)
 

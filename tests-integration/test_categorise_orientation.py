@@ -26,7 +26,13 @@ class TestCategoriseOrientation(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(
             cli,
-            ["categorise-orientation", "--input-dir", input_dir, "--output-dir", output_dir],
+            [
+                "categorise-orientation",
+                "--input-dir",
+                input_dir,
+                "--output-dir",
+                output_dir,
+            ],
         )
         self.assertEqual(result.exit_code, 0)
 

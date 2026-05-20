@@ -88,6 +88,10 @@ def _categorise_orientation(input_dir: str, output_dir: str) -> None:
         input_dir, images, logger
     )
 
-    _write_orientation_images(landscape_images, "landscape", input_dir, output_dir, logger)
-    _write_orientation_images(portrait_images, "portrait", input_dir, output_dir, logger)
+    _write_orientation_images(
+        landscape_images, "landscape", input_dir, output_dir, logger
+    )
+    _write_orientation_images(
+        portrait_images, "portrait", input_dir, output_dir, logger
+    )
     _write_orientation_images(square_images, "square", input_dir, output_dir, logger)

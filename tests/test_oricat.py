@@ -9,7 +9,9 @@ from oricat import cli
 class TestOricat(unittest.TestCase):
 
     @patch("oricat._categorise_orientation")
-    def test_cli(self, func_categorise_orientation):  # pylint: disable=too-many-arguments
+    def test_cli(
+        self, func_categorise_orientation
+    ):  # pylint: disable=too-many-arguments
 
         func_categorise_orientation.return_value = None
 
