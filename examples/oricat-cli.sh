@@ -17,5 +17,5 @@ cp fixtures/categorise/*.* ../stage/examples/input/categorise/
 
 echo "\n\n========================================"
 echo "Run command with specified input output dirs:"
-echo "oricat categorise --input-dir ../stage/examples/input/categorise/ --output-dir ../stage/output/categorise/"
-oricat categorise --input-dir ../stage/examples/input/categorise/ --output-dir ../stage/output/categorise/
+echo "oricat categorise-orientation --input-dir ../stage/examples/input/categorise/ --output-dir ../stage/output/categorise/"
+oricat categorise-orientation --input-dir ../stage/examples/input/categorise/ --output-dir ../stage/output/categorise/
