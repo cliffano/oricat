@@ -28,6 +28,14 @@ The categorised images will then be moved to:
 * `some/output/folder/portrait` for images having portrait orientation
 * `some/output/folder/square` for images having square orientation
 
+### Blur license plates in car images
+
+Command:
+
+    oricat blur-plates --input-dir some/input/folder/ --output-dir some/output/folder/
+
+License plates detected in the images will be blurred. Processed images are written to the output directory preserving the original filenames.
+
 ## Colophon
 
 [Developer's Guide](https://cliffano.github.io/developers_guide.html#python)

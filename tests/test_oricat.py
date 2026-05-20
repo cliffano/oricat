@@ -84,3 +84,26 @@ class TestOricat(unittest.TestCase):
 
         # should delegate call to _categorise
         func_categorise.assert_called_once_with("some/input/dir/", "some/output/dir/")
+
+    @patch("oricat._blur_plates")
+    def test_blur_plates_cli(self, func_blur_plates):
+
+        func_blur_plates.return_value = None
+
+        runner = CliRunner()
+        result = runner.invoke(
+            cli,
+            [
+                "blur-plates",
+                "--input-dir",
+                "some/input/dir/",
+                "--output-dir",
+                "some/output/dir/",
+            ],
+        )
+        assert not result.exception
+        assert result.exit_code == 0
+        assert result.output == ""
+
+        # should delegate call to _blur_plates
+        func_blur_plates.assert_called_once_with("some/input/dir/", "some/output/dir/")
